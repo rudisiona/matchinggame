@@ -7,22 +7,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: yellow;
 }
 .board {
     width: 620px;
     height: 620px;
     display: flex;
     flex-wrap: wrap;
-
-    border: 2px solid red;
+    perspective: 1000px;
 
 }
 .card{
     width: 23%;
     height: 23%;
     position: relative;
+    transform-style: preserve-3d;
     margin: 5px;
     transform: scale(1);
+    transition: transform .5s;
     
 }
 .card:active {
@@ -41,5 +43,9 @@ transform: rotateY(180deg)
  
     position: absolute;
     border-radius: 5px;
+    backface-visibility: hidden;
 }
 
+.card-face {
+    transform: rotateY(180deg)
+}
