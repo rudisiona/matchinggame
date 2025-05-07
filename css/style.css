@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: yellow;
+    background-color: rgb(37, 165, 37);
 }
 .board {
     width: 620px;
@@ -48,4 +48,13 @@ transform: rotateY(180deg)
 
 .card-face {
     transform: rotateY(180deg)
+}
+#gameTimer {
+    display: flex;
+   align-items: center;
+   font-size: 40px;
+
+}
+.timerbutton {
+    margin: 10px
 }
