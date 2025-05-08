@@ -14,8 +14,15 @@ const cards = document.querySelectorAll('.card')
 const levels = document.querySelectorAll('.level')
 const timer = document.querySelector('#timer')
 const start = document.querySelector('#startBtn')
-
+const restart = document.querySelector('#restartBtn')
+const flipped = document.getElementsByClassName('card flip')
 /*-------------------------------- Functions --------------------------------*/
+
+
+// function init() {
+//   card.removeEventListener('click', flipCard)
+// }
+// init()
 function flipCard() {
    this.classList.toggle('flip');
    console.log(this)
@@ -51,6 +58,25 @@ function startTimer() {
    countdown -= 1;
       }, 1000);
 
+      start.removeEventListener('click', startTimer);
+}
+
+function startGame() {
+startTimer();
+start.removeEventListener('click', startGame);
+cards.forEach(card => card.addEventListener('click', flipCard))
+restart.addEventListener('click', restartGame)
+}
+
+function restartGame() {
+  timer.textContent = '0:00'
+  countdown = 0
+if (flipped) {
+  cards.forEach(card => {
+    card.classList.remove('flip');
+  });
+  
+}
 
 }
 
@@ -61,10 +87,13 @@ function startTimer() {
 
 
 
+
+
 /*----------------------------- Event Listeners -----------------------------*/
 
-cards.forEach(card => card.addEventListener('click', flipCard))
+
 levels.forEach(level => level.addEventListener('click', setTimer))
-start.addEventListener('click', startTimer)
-// const starts = setInterval(startTimer, 1000)
+start.addEventListener('click', startGame)
+
+
 
