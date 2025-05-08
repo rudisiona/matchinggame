@@ -41,6 +41,8 @@ function setTimer() {
         countdown = 30;
   
   }
+  
+  start.addEventListener('click', startGame)
 }
 function startTimer() {
 
@@ -58,15 +60,17 @@ function startTimer() {
    countdown -= 1;
       }, 1000);
 
-      start.removeEventListener('click', startTimer);
 }
 
 function startGame() {
-startTimer();
+if(timer.textContent === '0:00')return
+startTimer()
 start.removeEventListener('click', startGame);
 cards.forEach(card => card.addEventListener('click', flipCard))
 restart.addEventListener('click', restartGame)
 }
+
+
 
 function restartGame() {
   timer.textContent = '0:00'
@@ -75,6 +79,8 @@ if (flipped) {
   cards.forEach(card => {
     card.classList.remove('flip');
   });
+  levels.forEach(level => level.addEventListener('click', setTimer))
+
   
 }
 
@@ -94,6 +100,5 @@ if (flipped) {
 
 levels.forEach(level => level.addEventListener('click', setTimer))
 start.addEventListener('click', startGame)
-
 
 
