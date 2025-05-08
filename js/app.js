@@ -9,7 +9,7 @@ var countDown;
 let countdown = 0
 
 /*------------------------ Cached Element References ------------------------*/
-
+const board = document.querySelector('#gameBoard')
 const cards = document.querySelectorAll('.card')
 const levels = document.querySelectorAll('.level')
 const timer = document.querySelector('#timer')
@@ -20,7 +20,6 @@ const flipped = document.getElementsByClassName('card flip')
 
 function flipCard() {
    this.classList.toggle('flip');
-   console.log(cards)
 }
 
 function setTimer() {
@@ -50,19 +49,21 @@ function startTimer() {
     }
     countdown -= 1;
       }, 1000);
-      shuffleDeck()
+      shuffleCards(cards);
 }
-function shuffleDeck() {
-  let deck = Array.from(cards);
-  for (let i = 0; i < deck.length; i++) {
-    let shuffle = Math.floor(Math.random() * (deck.length));
-    let temp = deck[i];
-    deck[i] = deck[shuffle];
-    deck[shuffle] = temp; 
+
+function shuffleCards(cards) {
+  const cardArray = Array.from(cards);
+  const parent = cards[0].parentNode;
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
   }
-  return deck;
-    
+  for (let i = cardArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cardArray[i], cardArray[j]] = [cardArray[j], cardArray[i]];
   }
+  cardArray.forEach(card => parent.appendChild(card));
+}
 
 
 function startGame() {
@@ -84,14 +85,17 @@ if (flipped) {
     card.classList.remove('flip');
   });
   levels.forEach(level => level.addEventListener('click', setTimer))  
+  cards.forEach(card => card.removeEventListener('click', flipCard))
 }
 }
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 
 levels.forEach(level => level.addEventListener('click', setTimer))
 start.addEventListener('click', startGame)
+
 
 
 
