@@ -7,7 +7,7 @@ var countDown;
 /*---------------------------- Variables (state) ----------------------------*/
 
 let countdown = 0
-
+let matched = []
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('#gameBoard')
 const cards = document.querySelectorAll('.card')
@@ -16,6 +16,8 @@ const timer = document.querySelector('#timer')
 const start = document.querySelector('#startBtn')
 const restart = document.querySelector('#restartBtn')
 const flipped = document.getElementsByClassName('card flip')
+const cardArray = Array.from(cards);
+
 /*-------------------------------- Functions --------------------------------*/
 
 function flipCard() {
@@ -53,7 +55,7 @@ function startTimer() {
 }
 
 function shuffleCards(cards) {
-  const cardArray = Array.from(cards);
+
   const parent = cards[0].parentNode;
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -73,6 +75,7 @@ startTimer()
 start.removeEventListener('click', startGame);
 cards.forEach(card => card.addEventListener('click', flipCard))
 restart.addEventListener('click', restartGame)
+cards.forEach(card => card.addEventListener('click', checkMatch))
 
 
 }
@@ -89,12 +92,33 @@ if (flipped) {
 }
 }
 
+function checkMatch() {
+  const flipped = Array.from(cardArray).filter(card => card.classList.contains('flip'));
+  const flippedIDs = Array.from(document.querySelectorAll('.card.flip')).map(card => card.id);
+
+if(flipped.length !== 2) {
+  console.log(1)
+  return
+} else if(flipped.length === 2){
+  console.log(2)
+  cards.forEach(card => card.removeEventListener('click', flipCard))
+} if(flipped.length === 2 && flippedIDs[0] === flippedIDs[1]){
+  console.log('match')
+  return
+  
+} else {
+ console.log('else')
+  flipped.forEach(card => card.addEventListener('click', flipCard.call(card)))
+}
+}
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 
 levels.forEach(level => level.addEventListener('click', setTimer))
 start.addEventListener('click', startGame)
+
 
 
 
