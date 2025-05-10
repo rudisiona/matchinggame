@@ -6,8 +6,11 @@ var countDown;
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let countdown = 0
-let matched = []
+let countdown = 0;
+let matched = [];
+let hasFlippedCard = false;
+let firstCard, secondCard;
+ 
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('#gameBoard')
 const cards = document.querySelectorAll('.card')
@@ -22,6 +25,24 @@ const cardArray = Array.from(cards);
 
 function flipCard() {
    this.classList.toggle('flip');
+   if(!hasFlippedCard){
+    hasFlippedCard = true;
+    firstCard = this;
+    
+   } else {
+    hasFlippedCard = false;
+    secondCard = this;
+   if(firstCard.dataset.key === secondCard.dataset.key){
+    firstCard.removeEventListener('click', flipCard)
+    secondCard.removeEventListener('click', flipCard)
+    console.log('work')
+   } else {
+    setTimeout(() => {
+      firstCard.classList.remove('flip')
+      secondCard.classList.remove('flip')
+    }, 750)
+   }
+   } 
 }
 
 function setTimer() {
@@ -75,7 +96,7 @@ startTimer()
 start.removeEventListener('click', startGame);
 cards.forEach(card => card.addEventListener('click', flipCard))
 restart.addEventListener('click', restartGame)
-cards.forEach(card => card.addEventListener('click', checkMatch))
+
 
 
 }
@@ -92,25 +113,7 @@ if (flipped) {
 }
 }
 
-function checkMatch() {
-  const flipped = Array.from(cardArray).filter(card => card.classList.contains('flip'));
-  const flippedIDs = Array.from(document.querySelectorAll('.card.flip')).map(card => card.id);
 
-if(flipped.length !== 2) {
-  console.log(1)
-  return
-} else if(flipped.length === 2){
-  console.log(2)
-  cards.forEach(card => card.removeEventListener('click', flipCard))
-} if(flipped.length === 2 && flippedIDs[0] === flippedIDs[1]){
-  console.log('match')
-  return
-  
-} else {
- console.log('else')
-  flipped.forEach(card => card.addEventListener('click', flipCard.call(card)))
-}
-}
 
 
 /*----------------------------- Event Listeners -----------------------------*/
