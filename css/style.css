@@ -9,13 +9,48 @@ body {
     align-items: center;
     background-color: rgba(13, 150, 13, 0.86);
 }
+h1 {
+    font-family: "Handjet", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    font-variation-settings:
+      "ELGR" 1,
+      "ELSH" 2;
+      font-size: 50px;
+}
+h2 {
+    text-align: center;
+    font-family: "Handjet", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    font-variation-settings:
+      "ELGR" 1,
+      "ELSH" 2;
+}
+#timer {
+    font-family: "Handjet", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    font-variation-settings:
+      "ELGR" 1,
+      "ELSH" 2;
+}
 #gameTimer{
     display: flex;
     align-items: center;
     font-size: 45px;
+    margin: 0;
 }
 .timerbtns{
     margin: 10px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    font-size: 15px;
 }
 #gameBoard {
     width: 620px;
@@ -56,4 +91,11 @@ transform: rotateY(180deg)
 
 .card-face {
     transform: rotateY(180deg)
+}
+.level {
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    font-size: 15px;
 }

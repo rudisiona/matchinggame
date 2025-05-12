@@ -6,17 +6,23 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>remember me!</h1>
- <h2>forgot how to play? Choose a difficulty to set the timer. Press the start button. Find all the matches before the timer runs out.</h2>
+    <h1>remember me</h1>
+ <h2 id="msg">forgot how to play? click a time to set the timer. </br>press the start button. find all the matches before the timer runs out.</h2>
  <div id="difficultyBtns">
- <button type="button" class="level">Easy</button>
- <button type="button" class="level">Medium</button>
- <button type="button" class="level">Hard</button>
+ <button type="button" class="level">2:00</button>
+ <button type="button" class="level">1:00</button>
+ <button type="button" class="level">0:30</button>
 </div>
 <div id="gameTimer">
-    <button type="button" class="timerbtns" id="startBtn">Start</button>
+    <button type="button" class="timerbtns" id="startBtn">start</button>
     <p id="timer">0:00</p>
     <button type="button" class="timerbtns" id="restartBtn">Restart</button>
 </div>
