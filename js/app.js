@@ -14,6 +14,7 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let timerFinished = false;
 let checkWinInterval;
+let stopTurn = false;
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('#gameBoard')
 const cards = document.querySelectorAll('.card')
@@ -29,12 +30,13 @@ const cardArray = Array.from(cards);
 
 function flipCard() {
  
-
+if(startTurn) return;
    this.classList.toggle('flip');
   
    if(!hasFlippedCard){
     hasFlippedCard = true;
     firstCard = this;
+    this.removeEventListener('click', flipCard)
     
    } else {
     hasFlippedCard = false;
@@ -44,9 +46,12 @@ function flipCard() {
     secondCard.removeEventListener('click', flipCard)
     
    } else {
+    firstCard.addEventListener('click', flipCard)
+    startTurn = true
     setTimeout(() => {
       firstCard.classList.remove('flip')
       secondCard.classList.remove('flip')
+      startTurn = false
     }, 750)
    }
    } 
