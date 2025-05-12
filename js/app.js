@@ -63,7 +63,7 @@ if(matchedBoard){
     clearInterval(checkWinInterval)
 } else if (!matchedBoard && timer.textContent === '0:00') {
     message.textContent = '.. you should probably work on your memory.. try again?'
-    restart.innerHTML = 'Try Again'
+    restart.innerHTML = 'try again'
     clearInterval(checkWinInterval)
     cards.forEach(card => card.removeEventListener('click', flipCard))
 } else{
@@ -73,15 +73,15 @@ if(matchedBoard){
 }
 
 function setTimer() {
-  if(this.innerText === '2:00') {
-      timer.textContent = '2:00';
-      countdown = 120;
-  } else if(this.innerText === '1:00'){
-        timer.textContent = '1:00';
-        countdown = 60;
-  } else {
+  if(this.innerText === '1:00') {
+      timer.textContent = '1:00';
+      countdown = 60;
+  } else if(this.innerText === '0:30'){
         timer.textContent = '0:30';
-        countdown = 5;
+        countdown = 30;
+  } else {
+        timer.textContent = '0:20';
+        countdown = 20;
    }       
   start.addEventListener('click', startGame)
 }
@@ -93,7 +93,7 @@ function startTimer() {
       timer.textContent = '0:00';
       timerFinished = true;
     } else {
-        message.textContent = 'Go'
+        message.textContent = 'go'
         const minutes = Math.floor(countdown / 60)
         let seconds = countdown % 60
         seconds = seconds < 10 ? '0' + seconds : seconds;

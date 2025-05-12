@@ -8,6 +8,11 @@ body {
     justify-content: center;
     align-items: center;
     background-color: rgba(13, 150, 13, 0.86);
+    height: 100vh;
+    background-image: url('https://i.pinimg.com/736x/1f/a4/46/1fa44618d7b48d7471b26c58196fedc1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 h1 {
     font-family: "Handjet", sans-serif;
