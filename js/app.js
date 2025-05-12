@@ -60,18 +60,23 @@ if(matchedBoard){
     console.log('match')
     clearInterval(countDown)
     message.textContent = `congrats you have great memory`
-    clearInterval(checkWinInterval)
+   endgame()
 } else if (!matchedBoard && timer.textContent === '0:00') {
     message.textContent = '.. you should probably work on your memory.. try again?'
     restart.innerHTML = 'try again'
-    clearInterval(checkWinInterval)
-    cards.forEach(card => card.removeEventListener('click', flipCard))
+   endgame()
 } else{
     console.log('no match')
 }
 
 }
 
+
+function endgame() {
+  clearInterval(checkWinInterval)
+  cards.forEach(card => card.removeEventListener('click', flipCard))
+  levels.forEach(level => level.removeEventListener('click', setTimer))
+}
 function setTimer() {
   if(this.innerText === '1:00') {
       timer.textContent = '1:00';
@@ -138,6 +143,7 @@ function restartGame() {
   restart.textContent = 'restart'
   clearInterval(checkWinInterval)
   message.textContent = 'forgot how to play? choose a difficulty to set the timer. press the start button. find all the matches before the timer runs out.'
+  levels.forEach(level => level.addEventListener('click', setTimer))
 if(flipped) {
   cards.forEach(card => {
     card.classList.remove('flip');
