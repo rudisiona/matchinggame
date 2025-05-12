@@ -1,15 +1,10 @@
-console.log('the world is yours')
-
-console.log('the world is yours')
-
 /*-------------------------------- Constants --------------------------------*/
 
-var countDown;
+
 
 /*---------------------------- Variables (state) ----------------------------*/
-
-let countdown = 0;
-let matched = [];
+let countDown;
+let timerCount = 0;
 let hasFlippedCard = false;
 let firstCard, secondCard;
 let timerFinished = false;
@@ -29,7 +24,7 @@ const cardArray = Array.from(cards);
 /*-------------------------------- Functions --------------------------------*/
 
 function flipCard() {
- 
+ console.log(this)
 if(startTurn) return;
    this.classList.toggle('flip');
   
@@ -54,65 +49,56 @@ if(startTurn) return;
       startTurn = false
     }, 750)
    }
-   } 
-}
-
+   }}
 
 function checkWin() {
-const matchedBoard = cardArray.every(card => card.classList.contains('flip'))
-console.log(cardArray)
-if(matchedBoard){
-    console.log('match')
+  const matchedBoard = cardArray.every(card => card.classList.contains('flip'))
+  if(matchedBoard){
+
     clearInterval(countDown)
     message.textContent = `congrats you have great memory`
     clearInterval(checkWinInterval)
     levels.forEach(level => level.removeEventListener('click', setTimer))
-} else if (!matchedBoard && timer.textContent === '0:00') {
+  } else if (!matchedBoard && timer.textContent === '0:00') {
     message.textContent = '.. you should probably work on your memory.. try again?'
     restart.innerHTML = 'try again'
     clearInterval(checkWinInterval)
     levels.forEach(level => level.removeEventListener('click', setTimer))
-} else{
-    console.log('no match')
-}
-
-}
-
+}}
 
 function setTimer() {
   if(this.innerText === '1:00') {
       timer.textContent = '1:00';
-      countdown = 60;
+      timerCount = 6000;
   } else if(this.innerText === '0:30'){
         timer.textContent = '0:30';
-        countdown = 30;
+        timerCount = 30;
   } else {
         timer.textContent = '0:20';
-        countdown = 20;
+        timerCount = 20;
    }       
   start.addEventListener('click', startGame)
 }
 
 function startTimer() {
   countDown = setInterval(function() {
-    if (countdown === 0) {
+    if (timerCount === 0) {
       clearInterval(countDown);
       timer.textContent = '0:00';
       timerFinished = true;
     } else {
         message.textContent = 'go'
-        const minutes = Math.floor(countdown / 60)
-        let seconds = countdown % 60
+        const minutes = Math.floor(timerCount / 60)
+        let seconds = timerCount % 60
         seconds = seconds < 10 ? '0' + seconds : seconds;
         timer.textContent = `${minutes}:${seconds}`
     }
-    countdown -= 1;
+    timerCount -= 1;
       }, 1000);
       shuffleCards(cards);
 }
 
 function shuffleCards(cards) {
-
   const parent = cards[0].parentNode;
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -128,20 +114,15 @@ function shuffleCards(cards) {
 function startGame() {
 if(timer.textContent === '0:00')return
 startTimer()
-
 start.removeEventListener('click', startGame);
 cards.forEach(card => card.addEventListener('click', flipCard))
 restart.addEventListener('click', restartGame)
 checkWinInterval = setInterval(checkWin, 1000);
-
-
-
-
 }
 
 function restartGame() {
   timer.textContent = '0:00'
-  countdown = 0
+  timerCount = 0
   restart.textContent = 'restart'
   clearInterval(checkWinInterval)
   message.textContent = 'forgot how to play? choose a difficulty to set the timer. press the start button. find all the matches before the timer runs out.'
@@ -152,12 +133,9 @@ if(flipped) {
   });
   levels.forEach(level => level.addEventListener('click', setTimer))  
   cards.forEach(card => card.removeEventListener('click', flipCard))
-}
-}
-
+}}
 
 /*----------------------------- Event Listeners -----------------------------*/
-
 
 levels.forEach(level => level.addEventListener('click', setTimer))
 start.addEventListener('click', startGame)
