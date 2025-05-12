@@ -19,6 +19,7 @@ const timer = document.querySelector('#timer')
 const start = document.querySelector('#startBtn')
 const restart = document.querySelector('#restartBtn')
 const flipped = document.getElementsByClassName('card flip')
+const message = document.querySelector('#msg')
 const cardArray = Array.from(cards);
 
 /*-------------------------------- Functions --------------------------------*/
@@ -35,7 +36,7 @@ function flipCard() {
    if(firstCard.dataset.key === secondCard.dataset.key){
     firstCard.removeEventListener('click', flipCard)
     secondCard.removeEventListener('click', flipCard)
-    checkWin()
+    checkWin(cardArray)
    } else {
     setTimeout(() => {
       firstCard.classList.remove('flip')
@@ -45,13 +46,22 @@ function flipCard() {
    } 
 }
 
-function checkWin() {
-console.log('hello')
+function checkWin(cardArray) {
+const matchedBoard = cardArray.every(card => card.className === cardArray[0].className)
+console.log(cardArray)
+if(matchedBoard){
+    console.log('match')
+    clearInterval(countDown)
+    message.textContent = `congrats you have great memory`
+} else {
+    console.log('no match')
+}
+
 }
 function setTimer() {
   if(this.innerText === 'Easy') {
       timer.textContent = '2:00';
-      countdown = 120;
+      countdown = 1200;
   } else if(this.innerText === 'Medium'){
         timer.textContent = '1:00';
         countdown = 60;
@@ -124,9 +134,3 @@ if (flipped) {
 
 levels.forEach(level => level.addEventListener('click', setTimer))
 start.addEventListener('click', startGame)
-
-
-
-
-
-
