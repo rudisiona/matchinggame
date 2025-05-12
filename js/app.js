@@ -60,11 +60,13 @@ if(matchedBoard){
     console.log('match')
     clearInterval(countDown)
     message.textContent = `congrats you have great memory`
-   endgame()
+    clearInterval(checkWinInterval)
+    levels.forEach(level => level.removeEventListener('click', setTimer))
 } else if (!matchedBoard && timer.textContent === '0:00') {
     message.textContent = '.. you should probably work on your memory.. try again?'
     restart.innerHTML = 'try again'
-   endgame()
+    clearInterval(checkWinInterval)
+    levels.forEach(level => level.removeEventListener('click', setTimer))
 } else{
     console.log('no match')
 }
@@ -72,11 +74,6 @@ if(matchedBoard){
 }
 
 
-function endgame() {
-  clearInterval(checkWinInterval)
-  cards.forEach(card => card.removeEventListener('click', flipCard))
-  levels.forEach(level => level.removeEventListener('click', setTimer))
-}
 function setTimer() {
   if(this.innerText === '1:00') {
       timer.textContent = '1:00';
