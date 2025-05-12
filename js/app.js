@@ -35,7 +35,7 @@ function flipCard() {
    if(firstCard.dataset.key === secondCard.dataset.key){
     firstCard.removeEventListener('click', flipCard)
     secondCard.removeEventListener('click', flipCard)
-    console.log('work')
+    checkWin()
    } else {
     setTimeout(() => {
       firstCard.classList.remove('flip')
@@ -45,6 +45,9 @@ function flipCard() {
    } 
 }
 
+function checkWin() {
+console.log('hello')
+}
 function setTimer() {
   if(this.innerText === 'Easy') {
       timer.textContent = '2:00';
@@ -121,6 +124,7 @@ if (flipped) {
 
 levels.forEach(level => level.addEventListener('click', setTimer))
 start.addEventListener('click', startGame)
+
 
 
 
