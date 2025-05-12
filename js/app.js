@@ -14,7 +14,7 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let timerFinished = false;
 let checkWinInterval;
-let stopTurn = false;
+let startTurn = false;
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('#gameBoard')
 const cards = document.querySelectorAll('.card')
