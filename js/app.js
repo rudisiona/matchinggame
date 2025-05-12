@@ -69,7 +69,7 @@ function checkWin() {
 function setTimer() {
   if(this.innerText === '1:00') {
       timer.textContent = '1:00';
-      timerCount = 6000;
+      timerCount = 60;
   } else if(this.innerText === '0:30'){
         timer.textContent = '0:30';
         timerCount = 30;
