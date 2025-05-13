@@ -18,7 +18,7 @@ const cards = document.querySelectorAll('.card')
 const levels = document.querySelectorAll('.level')
 const timer = document.querySelector('#timer')
 const start = document.querySelector('#startBtn')
-const restart = document.querySelector('#restartBtn')
+const reset = document.querySelector('#resetBtn')
 const flipped = document.getElementsByClassName('card flip')
 const message = document.querySelector('#msg')
 const cardArray = Array.from(cards);
@@ -31,7 +31,7 @@ function startGame() {
   start.removeEventListener('click', startGame);
   levels.forEach(level => level.removeEventListener('click', setTimer))
   cards.forEach(card => card.addEventListener('click', flipCard))
-  restart.addEventListener('click', restartGame)
+  reset.addEventListener('click', resetGame)
   checkWinInterval = setInterval(checkWin, 1000);
   }
 
@@ -120,16 +120,16 @@ function checkWin() {
 
   } else if (!matchedBoard && timer.textContent === '0:00') {
     message.textContent = '.. you should probably work on your memory.. try again?'
-    restart.innerHTML = 'try again'
+    reset.innerHTML = 'try again'
     cards.forEach(card => card.removeEventListener('click', flipCard))
     clearInterval(checkWinInterval)
     
 }}
 
-function restartGame() {
+function resetGame() {
   timer.textContent = '0:00'
   timerCount = 0
-  restart.textContent = 'restart'
+  reset.textContent = 'reset'
   clearInterval(checkWinInterval)
   message.textContent = 'forgot how to play? choose a difficulty to set the timer. press the start button. find all the matches before the timer runs out.'
   levels.forEach(level => level.addEventListener('click', setTimer))
