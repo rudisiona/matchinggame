@@ -16,9 +16,6 @@ body {
 }
 h1 {
     font-family: "Handjet", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: <weight>;
-    font-style: normal;
     font-variation-settings:
       "ELGR" 1,
       "ELSH" 2;
@@ -27,8 +24,6 @@ h1 {
 h2 {
     text-align: center;
     font-family: "Handjet", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: <weight>;
     font-style: normal;
     font-variation-settings:
       "ELGR" 1,
@@ -66,15 +61,10 @@ h2 {
     height: 23%;
     position: relative;
     transform-style: preserve-3d;
-    margin: 5px;
-    transform: scale(1);
+    margin: 5px; 
     transition: transform .5s;
-    
 }
-.card:active {
-    transform: scale(.97);
-    transition: transform .2s;
-}
+
 .card.flip {
 transform: rotateY(180deg)
 }

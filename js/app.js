@@ -22,49 +22,16 @@ const message = document.querySelector('#msg')
 const cardArray = Array.from(cards);
 
 /*-------------------------------- Functions --------------------------------*/
-
-function flipCard() {
- console.log(this)
-if(startTurn) return;
-   this.classList.toggle('flip');
-  
-   if(!hasFlippedCard){
-    hasFlippedCard = true;
-    firstCard = this;
-    this.removeEventListener('click', flipCard)
-    
-   } else {
-    hasFlippedCard = false;
-    secondCard = this;
-   if(firstCard.dataset.key === secondCard.dataset.key){
-    firstCard.removeEventListener('click', flipCard)
-    secondCard.removeEventListener('click', flipCard)
-    
-   } else {
-    firstCard.addEventListener('click', flipCard)
-    startTurn = true
-    setTimeout(() => {
-      firstCard.classList.remove('flip')
-      secondCard.classList.remove('flip')
-      startTurn = false
-    }, 750)
-   }
-   }}
-
-function checkWin() {
-  const matchedBoard = cardArray.every(card => card.classList.contains('flip'))
-  if(matchedBoard){
-
-    clearInterval(countDown)
-    message.textContent = `congrats you have great memory`
-    clearInterval(checkWinInterval)
-    levels.forEach(level => level.removeEventListener('click', setTimer))
-  } else if (!matchedBoard && timer.textContent === '0:00') {
-    message.textContent = '.. you should probably work on your memory.. try again?'
-    restart.innerHTML = 'try again'
-    clearInterval(checkWinInterval)
-    levels.forEach(level => level.removeEventListener('click', setTimer))
-}}
+function startGame() {
+  if(timer.textContent === '0:00')return
+  startTimer()
+  shuffleCards(cards);
+  start.removeEventListener('click', startGame);
+  levels.forEach(level => level.removeEventListener('click', setTimer))
+  cards.forEach(card => card.addEventListener('click', flipCard))
+  restart.addEventListener('click', restartGame)
+  checkWinInterval = setInterval(checkWin, 1000);
+  }
 
 function setTimer() {
   if(this.innerText === '1:00') {
@@ -95,8 +62,33 @@ function startTimer() {
     }
     timerCount -= 1;
       }, 1000);
-      shuffleCards(cards);
+   
 }
+
+function flipCard() {
+  if(startTurn) return;
+    this.classList.toggle('flip');
+   if(!hasFlippedCard) {
+    hasFlippedCard = true;
+    firstCard = this;
+    firstCard.removeEventListener('click', flipCard)
+   } else {
+    hasFlippedCard = false;
+    secondCard = this;
+   if(firstCard.dataset.key === secondCard.dataset.key){
+    firstCard.removeEventListener('click', flipCard)
+    secondCard.removeEventListener('click', flipCard)
+    
+   } else {
+    firstCard.addEventListener('click', flipCard)
+    startTurn = true
+    setTimeout(() => {
+      firstCard.classList.remove('flip')
+      secondCard.classList.remove('flip')
+      startTurn = false
+    }, 750)
+   }
+   }}
 
 function shuffleCards(cards) {
   const parent = cards[0].parentNode;
@@ -110,15 +102,20 @@ function shuffleCards(cards) {
   cardArray.forEach(card => parent.appendChild(card));
 }
 
+function checkWin() {
+  const matchedBoard = cardArray.every(card => card.classList.contains('flip'))
+  if(matchedBoard){
 
-function startGame() {
-if(timer.textContent === '0:00')return
-startTimer()
-start.removeEventListener('click', startGame);
-cards.forEach(card => card.addEventListener('click', flipCard))
-restart.addEventListener('click', restartGame)
-checkWinInterval = setInterval(checkWin, 1000);
-}
+    clearInterval(countDown)
+    message.textContent = `congrats you have great memory`
+    clearInterval(checkWinInterval)
+    levels.forEach(level => level.removeEventListener('click', setTimer))
+  } else if (!matchedBoard && timer.textContent === '0:00') {
+    message.textContent = '.. you should probably work on your memory.. try again?'
+    restart.innerHTML = 'try again'
+    clearInterval(checkWinInterval)
+    
+}}
 
 function restartGame() {
   timer.textContent = '0:00'
