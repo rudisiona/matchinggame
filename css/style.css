@@ -7,9 +7,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(13, 150, 13, 0.86);
+    background-color: #5c94fc;
     height: 100vh;
-    background-image: url('https://i.pinimg.com/736x/1f/a4/46/1fa44618d7b48d7471b26c58196fedc1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,6 +19,7 @@ h1 {
       "ELGR" 1,
       "ELSH" 2;
       font-size: 50px;
+      color: white;
 }
 h2 {
     text-align: center;
@@ -28,6 +28,8 @@ h2 {
     font-variation-settings:
       "ELGR" 1,
       "ELSH" 2;
+      color: white;
+      font-size: 40px;
 }
 #timer {
     font-family: "Handjet", sans-serif;
@@ -41,12 +43,16 @@ h2 {
     align-items: center;
     font-size: 45px;
     margin: 0;
+    color: white;
 }
 .timerbtns{
     margin: 10px;
     font-family: "Roboto Condensed", sans-serif;
     font-style: normal;
     font-size: 15px;
+    background-color: #169107;
+    color: white;
+    border-color: #169107
 }
 #gameBoard {
     width: 620px;
@@ -86,4 +92,7 @@ transform: rotateY(180deg)
     font-family: "Roboto Condensed", sans-serif;
     font-style: normal;
     font-size: 15px;
+    background-color: #169107;
+    color: white;
+    border-color: #169107
 }

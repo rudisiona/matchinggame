@@ -54,7 +54,7 @@ function startTimer() {
       timer.textContent = '0:00';
       timerFinished = true;
     } else {
-        message.textContent = 'go'
+        message.textContent = 'get to matching!'
         const minutes = Math.floor(timerCount / 60)
         let seconds = timerCount % 60
         seconds = seconds < 10 ? '0' + seconds : seconds;
@@ -107,12 +107,13 @@ function checkWin() {
   if(matchedBoard){
 
     clearInterval(countDown)
-    message.textContent = `congrats you have great memory`
+    message.textContent = 'congrats you win!'
     clearInterval(checkWinInterval)
     levels.forEach(level => level.removeEventListener('click', setTimer))
   } else if (!matchedBoard && timer.textContent === '0:00') {
     message.textContent = '.. you should probably work on your memory.. try again?'
     restart.innerHTML = 'try again'
+    cards.forEach(card => card.removeEventListener('click', flipCard))
     clearInterval(checkWinInterval)
     
 }}
