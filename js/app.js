@@ -10,6 +10,7 @@ let firstCard, secondCard;
 let timerFinished = false;
 let checkWinInterval;
 let startTurn = false;
+let startCount;
 
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('#gameBoard')
@@ -38,12 +39,15 @@ function setTimer() {
   if(this.innerText === '1:00') {
       timer.textContent = '1:00';
       timerCount = 60;
+      startCount = 60;
   } else if(this.innerText === '0:30'){
         timer.textContent = '0:30';
         timerCount = 30;
+        startCount = 30
   } else {
         timer.textContent = '0:20';
         timerCount = 20;
+        startCount = 20
    }       
   start.addEventListener('click', startGame)
 }
@@ -108,7 +112,7 @@ function checkWin() {
   if(matchedBoard){
 
     clearInterval(countDown)
-    let timeWon = (60 - timerCount) - 1
+    let timeWon = (startCount - timerCount) - 1
     message.textContent = `congrats you found them all in ${timeWon} seconds!`
     clearInterval(checkWinInterval)
     levels.forEach(level => level.removeEventListener('click', setTimer))
