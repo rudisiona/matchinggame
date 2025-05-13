@@ -10,6 +10,7 @@ let firstCard, secondCard;
 let timerFinished = false;
 let checkWinInterval;
 let startTurn = false;
+
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('#gameBoard')
 const cards = document.querySelectorAll('.card')
@@ -107,9 +108,12 @@ function checkWin() {
   if(matchedBoard){
 
     clearInterval(countDown)
-    message.textContent = 'congrats you win!'
+    let timeWon = (60 - timerCount) - 1
+    message.textContent = `congrats you found them all in ${timeWon} seconds!`
     clearInterval(checkWinInterval)
     levels.forEach(level => level.removeEventListener('click', setTimer))
+ 
+
   } else if (!matchedBoard && timer.textContent === '0:00') {
     message.textContent = '.. you should probably work on your memory.. try again?'
     restart.innerHTML = 'try again'
