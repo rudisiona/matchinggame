@@ -7,7 +7,6 @@ let countDown;
 let timerCount = 0;
 let hasFlippedCard = false;
 let firstCard, secondCard;
-let timerFinished = false;
 let checkWinInterval;
 let startTurn = false;
 let startCount;
@@ -57,7 +56,6 @@ function startTimer() {
     if (timerCount === 0) {
       clearInterval(countDown);
       timer.textContent = '0:00';
-      timerFinished = true;
     } else {
         message.textContent = 'get to matching!'
         const minutes = Math.floor(timerCount / 60)
@@ -67,7 +65,6 @@ function startTimer() {
     }
     timerCount -= 1;
       }, 1000);
-   
 }
 
 function flipCard() {
