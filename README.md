@@ -17,4 +17,4 @@
 https://trello.com/b/SFbDCj28/matchinggame
 
 ## Next Steps
-I would like to increase the difficulty on the harder levels to make the game more interesting. I can do this by flipping the card over faster when it isn't a pair, swapping the position of cards when your checking a match and it isn't a pair, or also adding a condition of a limited amount of guesses.
+I would like to increase the difficulty on the harder levels to make the game more interesting. I can do this by flipping the card over faster when it isn't a pair, swapping the position of cards when player is checking a match and it isn't a pair, or also adding a condition of a limited amount of guesses.
