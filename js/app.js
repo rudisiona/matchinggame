@@ -69,12 +69,13 @@ function startTimer() {
 
 function flipCard() {
   if(startTurn) return;
-    this.classList.toggle('flip');
+    this.classList.add('flip');
    if(!hasFlippedCard) {
     hasFlippedCard = true;
     firstCard = this;
     firstCard.removeEventListener('click', flipCard)
    } else {
+    if (this === firstCard) return;
     hasFlippedCard = false;
     secondCard = this;
    if(firstCard.dataset.key === secondCard.dataset.key){
