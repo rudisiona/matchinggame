@@ -63,6 +63,7 @@ h2 {
 
 }
 .card{
+    aspect-ratio: 1 / 1; 
     width: 23%;
     height: 23%;
     position: relative;
@@ -98,3 +99,5 @@ transform: rotateY(180deg)
     color: white;
     border-color: #169107
 }
+
+
